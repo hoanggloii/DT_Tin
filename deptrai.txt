@@ -715,3 +715,213 @@ int main(){
     }
     return 0;
 }
+bool kt_snt(int x){
+    if(x<2) return false;
+    int y=sqrt(x);
+    for(int i=1; i<=y; i++)
+        if(x%i==0) return false;
+    return true;
+}
+void snt_1(int n,bool kt[]){
+    kt[0]=kt[1]=true;
+    int y=sqrt(n);
+    for(int i=2; i<=y; i++)
+        if(!kt[i])
+            for(int j=i*i; j<=n; j+=i)
+                kt[j]=true;
+}
+void snt_2(int n,bool kt[],int a[],int m){
+    kt[0]=kt[1]=true;
+    int y=sqrt(n);
+    for(int i=2; i<=y; i++)
+        if(!kt[i]){
+            a[++m]=i;
+            for(int j=i*i; j<=n; j+=i)
+                kt[j]=true;
+        }
+    for(int i=y+1; i<=n; i++)
+        if(!kt[i]) a[++m]=i;
+}
+void pt_snt(int x,int a[]){
+    int y=sqrt(x);
+    for(int i=2; i<=y; i++){
+        if(x<2) return;
+        while(x%i==0){
+            a[i]++;
+            x/=i;
+        }
+    }
+    if(x>1) a[x]=1;
+}
+//so doixung
+bool dx(ll n)
+{
+    ll rev=0, tmp=n;
+    while (n != 0)
+    {
+        rev= rev*10 + n%10;
+        n/=10;
+    }
+    if(tmp==rev)    return true;
+    else return false;
+}
+// uoc so:
+// UCLN: vi du: int a=__gcd(x,y);
+// BCNN: x*y/UCLN
+int dem_uoc(int x){
+    if(x<1) return 0;
+    else if(x==1) return 1;
+    int y=sqrt(x);
+    int res=2;
+    for(int i=2; i<=y; i++){
+        if(x<2) return res;
+        int cnt=0;
+        while(x%i==0){
+            cnt++;
+            x/=i;
+        }
+        res*=(cnt+1);
+    }
+    if(x>1) res*=2;
+    return res;
+}
+int tong_uoc(int x){
+    if(x<1) return 0;
+    else if (x==1) return 1;
+    int res=1+x;
+    int y=sqrt(x);
+    for(int i=2; i<=y; i++)
+        if(x%i==0) res+=i+x/i;
+    if(y*y==x) res-=y;
+    return res;
+}
+
+// tim kiem nhi phan
+int timkiem1(int x,int a[],int l,int r){ //vi tri dau tien cua x trong day
+    int mid,pos=0;
+    while(l<=r){
+        mid=(l+r)>>1;
+        if(a[mid]==x){
+            r=mid-1; pos=mid;
+        }else if(a[mid]<x) l=mid+1;
+        else r=mid-1;
+    }
+    return pos;
+}
+int timkiem2(int x,int a[],int l,int r){ //vi tri cuoi cung cua x trong day
+    int mid,pos=0;
+    while(l<=r){
+        mid=(l+r)>>1;
+        if(a[mid]==x){
+            l=mid+1; pos=mid;
+        }else if(a[mid]<x) l=mid+1;
+        else r=mid-1;
+    }
+    return pos;
+}
+int timkiem3(int x,int a[],int l,int r){ //vi tri cua so dau tien >= x
+    int mid,pos=0;
+    while(l<=r){
+        mid=(l+r)>>1;
+        if(a[mid]<x) l=mid+1;
+        else{
+            r=mid-1; pos=mid;
+        }
+    }
+    return pos;
+}
+int timkiem4(int x,int a[],int l,int r){ //vi tri cua so cuoi cung <= x
+    int mid,pos=0;
+    while(l<=r){
+        mid=(l+r)>>1;
+        if(a[mid]<x){
+            l=mid+1; pos=mid;
+        }else r=mid-1;
+    }
+    return pos;
+}
+
+// Luong giac :
+//cach doi do - radians:
+//double x=(double)do/180*acos(-1);
+// Suy ra: cos(x); sin(x); tan(x);
+
+// so lon:
+string cong(string x,string y){
+    int sx=x.length();
+    int sy=y.length();
+    int l=abs(sx-sy);
+    if(sx<sy)
+        for(int i=1; i<=l; i++) x='0'+x;
+    else
+        for(int i=1; i<=l; i++) y='0'+y;
+    l=x.length(); int res=0;
+    string z;
+    for(int i=l-1; i>=0; i--){
+        int r=x[i]+y[i]-96+res;
+        res=r/10;
+        z=char(r%10+48)+z;
+    }
+    if(res>0) z=char(res+48)+z;
+    return z;
+}
+string tru(string x,string y){
+    int sx=x.length();
+    int sy=y.length();
+    int l=abs(sx-sy);
+    if(sx<sy) for(int i=1; i<=l; i++) x='0'+x;
+    else for(int i=1; i<=l; i++) y='0'+y;
+    string am="";
+    if(x<y){
+        am="-";
+        swap(x,y);
+    }
+    int nho=0;
+    l=x.length();
+    for(int i=l-1; i>=0; i--){
+        int r=x[i]-y[i]-nho;
+        if(r<0){
+            r+=10;
+            nho=1;
+        }else nho=0;
+        z=char(r+48)+z;
+    }
+    int i=0;
+    while(z[i]=='0') i++;
+    z.erase(0,i);
+    z=am+z;
+    return z;
+}
+string nhan(string s,int x){
+    int l=s.length(),nho=0;
+    string res="";
+    for(int i=l-1; i>=0; i--){
+        int so=(s[i]-'0')*x+nho;
+        nho=so/10;
+        res=char(so%10+'0')+res;
+    }
+    if(nho>0) res=char(nho+'0')+res;
+    return res;
+}
+// doi so sang xau
+string ssx(unsigned int n)// ham doi so sang xau
+{stringstream ss;
+    ss<<n;
+    return ss.str();
+}
+// doi vitri sang ky tu
+char c=char(n)// vd char(97)='a'
+//chuyen ky tu sang so
+S[i]-'0' hoac s[i]-48
+// tinh tong cac chu so(so lon)
+int summ(string s){
+    int sum=0;
+    int l=s.length();
+    for(int i=0;i<l;i++)
+        sum+=s[i]-'0';//hoac -48
+    return sum;
+}
+int main(){
+
+    return 0;
+}
