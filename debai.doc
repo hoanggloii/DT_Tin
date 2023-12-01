@@ -1,0 +1,686 @@
+SỞ GIÁO DỤC VÀ ĐÀO TẠO THANH HÓA
+TRƯỜNG THPT NHƯ THANH
+SÁNG KIẾN KINH NGHIỆM
+ỨNG DỤNG THUẬT TOÁN CHẶT NHỊ PHÂN 
+ĐỂ GIẢI MỘT SỐ BÀI TOÁN TÌM KIẾM
+Người thực hiện: Lê Thị Liễu
+Chức vụ: Giáo viên
+SKKN thuộc lĩnh vực (môn): Tin học
+THANH HOÁ NĂM 2018
+MỤC LỤC
+1. MỞ ĐẦU
+1.1. Lí do chọn đề tài
+Các bài toán tìm kiếm chiếm phần lớn trong các bài tập của Tin học, Có nhiều phương pháp tìm kiếm để giải quyết bài toán đó trong đó tìm kiếm nhị phân là phương pháp tốt vì thời gian thực hiện nhanh.
+Thuật toán tìm kiếm nhị phân lại chỉ được trình bày ngắn gọn, sơ lược trong sách giáo khoa 10, 11 và không có ví dụ vận dụng dẫn đến học sinh khó có thể ứng dụng để làm các bài tập.
+Trên thực tế khi gặp dạng toán tìm kiếm học sinh có thể dễ dàng tìm ra cách giải nhưng chưa tìm ra được cách giải tối ưu để lấy được hết điểm. Đó là những lí do để tôi chọn đề tài “ỨNG DỤNG THUẬT TOÁN CHẶT NHỊ PHÂN ĐỂ GIẢI MỘT SỐ BÀI TOÁN TÌM KIẾM”
+1.2. Mục đích nghiên cứu	
+Giúp học sinh vận dụng thuật toán chặt nhị phân để giải được một số bài toán.
+1.3. Đối tượng nghiên cứu
+Thuật toán chặt nhị phân
+Một số ví dụ vận dụng, đánh giá độ phức tạp của thuật toán.
+1.4. Phương pháp nghiên cứu
+- Nghiên cứu sách, báo, tài liệu điện tử
+- Áp dụng vào giảng dạy và bồi dưỡng HSG Tin học 11.
+2. NỘI DUNG
+2.1. Cơ sở lý luận
+Bài toán tìm kiếm dạng đơn giản SGK lớp 10:
+Cho dãy A gồm N số nguyên khác nhau: a1, a2,,aN và một số nguyên K. Cần biết có hay không chỉ số i mà ai=K (1<=i<=N). Nếu có hãy cho biết chỉ số đó.
+Ý tưởng thuật toán tìm kiếm chị phân: Sử dụng tính chất dãy A là dãy số tăng dần, ta tìm cách thu hẹp nhanh phạm vi tìm kiếm sau mỗi lần so sánh khóa với số hạng được chọn. Để làm điều đó ta chọn số hạng Agiua ở giữa dãy để so sánh với K, trong đó Giua=[N+1] div 2.
+Khi đó chỉ xảy ra một trong ba trường hợp sau:
+- Nếu Agiua=k thì giua là chỉ số cần tìm. Việc tìm kiếm kết thúc.
+- Nếu Agiua>k thì việc tìm kiếm tiếp theo chỉ xét trên dãy A1, A2, , Agiua-1 (Phạm vi tìm kiếm mới bằng khoảng một nửa phạm vi tìm kiếm trước đó).
+- Nếu Agiua<k thì việc tìm kiếm tiếp theo chỉ xét trên dãy Agiua+1, Agiua+2,, AN.
+Quá trình trên sẽ được lặp lại một số lần cho đến khi hoặc đã tìm thấy khóa K trong dãy hoặc phạm vi tìm kiếm bằng rỗng.
+Đánh giá độ phức tạp: 
+- Thuật toán tìm kiếm nhị phân có độ phức tạp: O(logN), 
+- Tìm kiếm tuần tự độ phức tạp: O(N)
+ Tuy nhiên chỉ áp dụng tìm kiếm nhị phân khi dãy đã sắp xếp nên chúng ta thường sử dụng thuật toán sắp xếp nhanh (Qsort) với độ phức tạp O(NlogN) để sắp xếp dãy trước đó.
+2.2. Thực trạng vấn đề.
+Thực tế trong quá trình giảng dạy,khi gặp một bài toán tìm kiếm các em chỉ mới đưa ra được cách giải thông thường mà chưa tìm được phương pháp giải tối ưu. 
+Khi học xong thuật toán tìm kiếm nhị phân ở SGK lớp 10 các em hầu như không biết vận dụng vào các bài toán, nguồn tài liệu tham khảo lại ít nên học sinh không hình thành được tư duy giải bài toán
+2.3. Ứng dụng Thuật toán chặt nhị phân
+Bài 1: Cho dãy A có N số. Tìm số lượng các số có giá trị nhỏ hơn số nguyên M. 
+Dữ liệu vào: Tệp ‘slbehon.inp’
+- Dòng đầu tiên chứa số nguyên N cho biết số lượng phần tử của mảng A.
+- Dòng thứ hai chứa N số nguyên cách nhau.
+- Dòng thứ ba chứa số lượng Test Q.
+- Mỗi dòng Q tiếp theo chứa số nguyên M.
+Dữ liệu ra: Tệp ‘slbehon.out’:
+- Đối với mỗi truy vấn số lượng các số có giá trị nhỏ hơn M cho test đó.
+Giới hạn: 
+1 ≤ N ≤ 105
+1 ≤ A [i] ≤ 109
+1 ≤ Q ≤ 105
+1 ≤ M ≤ 105
+Slbehon.inp
+Slbehon.out
+5
+1 4 10 5 6
+4
+2
+3
+5
+11
+1
+1
+2
+5
+	Cách 1: Xây dựng 1 hàm để đếm số lượng phần tử trong mảng A có giá trị bé hơn M, hàm này được viết thường là duyệt tuần tự từ A1 đến AN, so sánh Ai với M và tăng biến lưu giá trị đếm. Chương trình được viết như sau:
+function dem(m:longint):longint;
+var i:longint;
+	begin
+	dem:=0;
+	for i:=1 to n do
+ 	if a[i]<m then inc(dem);
+	end;
+ for i:=1 to n do read(f,a[i]);
+ readln(f);
+ readln(f,q);
+ for i:=1 to q do
+ 	begin
+ 	readln(f,x);
+ 	writeln(f1,dem(x));
+ 	end;
+end;
+Với cách giải trên ta có: Hàm Dem có độ phức tạp O(N) và bài toán có Q test nên độ phức tạp là Q.O(N). Với yêu cầu 1 ≤ N ≤ 105; 1 ≤ Q ≤ 105 thì cách giải trên không thực hiện hết được các test lớn có Q, N tối đa.
+Cách 2: Ta thực hiện sắp xếp mảng đã cho bằng thuật toán Qsort và áp dụng kỷ thuật “chặt nhị phân” để xác định chỉ số cuối cùng của phần tử nhỏ hơn M. Đôh phức tạp: O(Nlogn)
+program So_luong_be_hon;
+const fi='slbehon.inp';
+ fo='slbehon.out';
+ nmax=100000;
+var a:array[1..nmax] of longint;
+ n,m,q:longint;
+ f,f1:text;
+procedure qsort(l,h:integer);
+var i,j,tam,k:longint;
+begin
+ i:=l;
+ j:=h;
+ k:=a[(l+h) div 2];
+ repeat
+ while a[i]<k do inc(i);
+ while a[j]>k do dec(j);
+ if i<=j then
+ begin
+ tam:=a[i];
+ a[i]:=a[j];
+ a[j]:=tam;
+ inc(i);
+ dec(j);
+ end;
+ until i>j;
+ if i<h then qsort(i,h);
+ if j>l then qsort(l,j);
+end;
+function tknp(x:longint):longint;
+var d,c,giua,res:longint;
+begin
+ res:=-1;
+ d:=1;
+ c:=n;
+ while d<=c do
+ begin
+ giua:=(d+c)div 2;
+ if a[giua]>=x then c:=giua-1
+ else
+ if a[giua]<x then
+ begin
+ res:=giua;
+ d:=giua+1;
+ end;
+ end;
+ if res=-1 then tknp:=0
+ else tknp:=res;
+end;
+procedure doc;
+var i:integer;
+ x:longint;
+begin
+ assign(f1,fo);
+ rewrite(f1);
+ assign(f,fi);
+ reset(f);
+ readln(f,n);
+ for i:=1 to n do read(f,a[i]);
+ qsort(1,n);
+ readln(f);
+ readln(f,q);
+ for i:=1 to q do
+ begin
+ readln(f,x);
+ writeln(f1,tknp(x));
+ end;
+end;
+begin
+ doc;
+ close(f1);
+end.
+Bài 2. Cho 1 dãy N số khác nhau. Hãy tìm xem có bao nhiêu cặp số có chênh lệch là k đơn vị.
+Dữ liệu vào: Tệp ‘chenhlech.inp’:
+- Dòng đầu tiên là N - số lượng dãy số và số nguyên K (N≤105, K≤109)
+- Dòng tiếp theo chứa N số nguyên trong dãy. (A[i] ≤ 109)
+Dữ liệu ra: Tệp ‘chenhlech.out’
+- Gồm một số duy nhất là số cặp có độ chênh lệch k.
+Capso.inp
+Capso.out
+Giải thích test.
+6 2
+1 3 2 4 9 5
+3
+3 cặp số đó là; (1,3) (3,5) và (2,4)
+Cách 1: Sử dụng 2 vòng For để duyệt và tìm ra 1 cặp số chênh lệch k đơn vị thì tăng biến đếm.
+begin
+ doc;
+ dem:=0;
+ for i:=1 to n-1 do
+ for j:=i+1 to n do
+ if abs(a[i]-a[j])=k then inc(dem);
+ assign(f,fo);
+ rewrite(f);
+ writeln(f,dem);
+ close(f);
+end.
+Chương trình trên có độ phức tạp là O(N2). Với giới hạn input của bài toán là (N≤105) thì chương trình trên không thực hiện được với test tối đa.
+Cách 2: Sử dụng kỷ thuật “chặt nhị phân”. Đầu tiên ta sắp xếp dãy tăng dần bằng Qsort. Tiếp theo ta duyệt dãy A. Tại Ai, nếu hàm TKNP(A[i]-k)=true thì ta tăng biến đếm (tìm được 1 số có chênh lệch k so với A[i]). Độ phức tạp O(NlogN).
+program capso;
+const fi='capso.inp';
+ fo='capso.out';
+ nmax=100000;
+var f:text;
+ n,k,dem:longint;
+ a:array[1..nmax] of longint;
+procedure doc;
+var i:longint;
+begin
+ assign(f,fi);
+ reset(f);
+ readln(f,n,k);
+ for i:=1 to n do read(f,a[i]);
+end;
+procedure sort(l,h:longint);
+ var
+ i,j,tam,x:longint;
+ begin
+ i:=l;
+ j:=h;
+ x:=a[(l+h) div 2];
+ repeat
+ while a[i]<x do inc(i);
+ while x<a[j] do dec(j);
+ if i<=j then
+ begin
+ tam:=a[i];
+ a[i]:=a[j];
+ a[j]:=tam;
+ inc(i);
+ dec(j);
+ end;
+ until i>j;
+ if l<j then sort(l,j);
+ if i<h then sort(i,h);
+ end;
+function tknp(i:longint):boolean;
+var d,c,g:longint;
+begin
+ d:=1;
+ c:=n;
+ while d<=c do
+ begin
+ g:=(d+c) div 2;
+ if (a[g]=i) then
+ begin
+ exit(true);
+ end;
+ if a[g]<i then d:=g+1
+ else c:=g-1;
+ end;
+ exit(false);
+end;
+procedure xuli;
+var i:longint;
+begin
+ sort(1,n);
+ for i:=1 to n do
+ if (tknp(a[i]-k)) then inc(dem);
+end;
+begin
+ doc;
+ dem:=0;
+ xuli;
+ assign(f,fo);
+ rewrite(f);
+ write(f,dem);
+ close(f);
+end.
+Bài 3. Chọn quân bài
+Cho một tập N quân bài, mỗi quân chứa một số nguyên dương. Bạn cần phải chọn ra ba quân bài sao cho tổng các số trên 3 quân bài gần với số M nhất và không vượt quá M.
+Dữ liệu vào: Tệp ‘quanbai.inp’:
+Dòng 1 chứa 2 số N và M. (N <=100, M <= 500000)
+Dòng 2 chứa N số nguyên dương, mỗi số không quá 100000.
+Dữ liệu ra: Tệp ‘quanbai.out’:
+In ra tổng 3 quân gần M nhất và không vượt quá M.
+Input luôn đảm bảo tồn tại đáp số.
+Quanbai.inp
+Quanbai.out
+5 21
+5 6 7 8 9
+21
+Cách 1: Duyệt 3 vòng For và tìm max. Độ phức tạp O(n3)
+program quanbai;
+const fi='quanbai.inp';
+ fo='quanbai.out';
+var f:text;
+ n,m,max:longint;
+ a:array[1..100] of longint;
+procedure doc;
+var i:longint;
+begin
+ assign(f,fi);
+ reset(f);
+ readln(f,n,m);
+ for i:=1 to n do read(f,a[i]);
+end;
+procedure xuly;
+var i,j,z:longint;
+begin
+ for i:=1 to n-2 do
+ for j:=i+1 to n-1 do
+ for z:=j+1 to n do
+ if (a[i]+a[j]+a[z]>max) and (a[i]+a[j]+a[z]<=m) then max:=a[i]+a[j]+a[z];
+ end;
+begin
+ doc;
+ max:=0;
+ xuly;
+ assign(f,fo);
+ rewrite(f);
+ writeln(f,max);
+ close(f);
+end.
+Cách 2: Sử dụng thuật toán chặt nhị phân. Gọi a[z] là số lớn nhất trong bộ 3 số a[i], a[j], a[z]. Tìm kiếm nhị phân số a[z] sao cho tổng 3 số <=M. Lưu ý cần sắp xếp mảng A trước khi tìm kiếm. Độ phức tạp O(N2logN)
+program quanbai;
+const fi='quanbai.inp';
+ fo='quanbai.out';
+var f:text;
+ n,m,max:longint;
+ a:array[1..100] of longint;
+procedure doc;
+var i:longint;
+begin
+ assign(f,fi);
+ reset(f);
+ readln(f,n,m);
+ for i:=1 to n do read(f,a[i]);
+end;
+function tknp(i,j:longint):longint;
+var d,c,g,s:longint;
+begin
+ tknp:=0;
+ d:=j+1;
+ c:=n;
+ while d<=c do
+ begin
+ g:=(d+c) div 2;
+ s:=a[i]+a[j]+a[g];
+ if s>m then c:=g-1
+ else
+ if s=m then
+ begin
+ tknp:=a[g];
+ exit;
+ end
+ else
+ begin
+ tknp:=a[g];
+ d:=g+1;
+ end;
+ end;
+end;
+procedure qsort(l,h:integer);
+var i,j,tam,k:longint;
+begin
+ i:=l;
+ j:=h;
+ k:=a[(l+h) div 2];
+ repeat
+ while a[i]<k do inc(i);
+ while a[j]>k do dec(j);
+ if i<=j then
+ begin
+ tam:=a[i];
+ a[i]:=a[j];
+ a[j]:=tam;
+ inc(i);
+ dec(j);
+ end;
+ until i>j;
+ if i<h then qsort(i,h);
+ if j>l then qsort(l,j);
+end;
+procedure xuly;
+var i,j,z:longint;
+begin
+ for i:=1 to n-2 do
+ for j:=i+1 to n-1 do
+ begin
+ z:=tknp(i,j);
+ if z=0 then break
+ else
+ if (a[i]+a[j]+z>max) and (a[i]+a[j]+z<=m) then max:=a[i]+a[j]+z;
+ end;
+end;
+begin
+ doc;
+ qsort(1,n);
+ max:=0;
+ xuly;
+ assign(f,fo);
+ rewrite(f);
+ writeln(f,max);
+ close(f);
+end.
+Bài 4. Có hộp N kẹo và mỗi hộp chứa A[i] cái kẹo. Số thứ tự của các viên kẹo được đánh số từ 1,2,3,..đến hết. Cho biết thứ tự của viên kẹo, hãy chỉ ra viên kẹo đó thuộc hộp kẹo thứ mấy.
+Dữ liệu vào: Tệp ‘Thutukeo.inp’ 
+- Dòng đầu tiên sẽ chứa N (Số hộp). 
+- Dòng tiếp theo cho biết số kẹo trong hộp thứ i. 
+- Dòng tiếp theo sẽ chứa Q (Số lần test).
+- Q dòng tiếp theo mỗi dòng chứa 1 giá trị nguyên là thứ tự của viên kẹo.
+Kết quả: Tệp ‘Thutukeo.out’:
+- Chứa Q dòng. In ra hộp kẹo tương ứng với thứ tự viên kẹo, mỗi kết quả trên 1 dòng
+Giới hạn: 1≤N,Q≤ 105 ;    1≤ A[i] ≤ 106
+‘Thutukeo.inp’
+‘Thutukeo.out’
+Ghi chú
+2
+2 3
+2
+2
+4
+1
+2
+Hộp đầu tiên sẽ có các viên kẹo thứ tự: 1, 2
+Hộp thứ hai sẽ có các viên kẹo chỉ số: 3, 4, 5
+Ý tưởng: Xây dựng mảng S với ý nghĩa S[i] là tổng các phần tử từ A[1] đến A[i]. Thực hiện tìm kiếm nhị phân trên mảng S.
+program chiso_keo;
+const nmax=100000;
+ fi='thutukeo.inp';
+ fo='thutukeo.out';
+var a:array[1..nmax] of longint;
+ n,q,x:longint;
+ s:array[0..nmax] of int64;
+ f,f1:text;
+function tknp(x:longint):longint;
+var d,c,k:longint;
+begin
+ d:=1;
+ c:=n;
+ while d<=c do
+ begin
+ k:=(d+c) div 2;
+ if x<s[1] then
+ begin
+ tknp:=1;
+ exit;
+ end;
+ if s[k]=x then
+ begin
+ tknp:=k;
+ exit;
+ end;
+ if (s[k]>x) and (s[k-1]<x) then
+ begin
+ tknp:=k;
+ exit;
+ end
+ else
+ if s[k]<x then d:=k+1
+ else c:=k-1;
+end;
+end;
+procedure doc_xuly;
+var i:longint;
+begin
+ assign(f1,fo);
+ rewrite(f1);
+ assign(f,fi);
+ reset(f);
+ readln(f,n);
+ for i:=1 to n do
+ begin
+ read(f,a[i]);
+ s[i]:=s[i-1]+a[i];
+ end;
+ readln(f);
+ readln(f,q);
+ for i:=1 to q do
+ begin
+ readln(f,x);
+ writeln(f1,tknp(x));
+ end;
+ close(f1);
+end;
+begin
+ s[0]:=0;
+ doc_xuly;
+end.
+Độ phức tạp: O(N+Q*log(N))
+Bài 5. Cho 1 xâu S chỉ chứa các ký tự in thường ['a'-'z'] và 1 số nguyên K. Hãy tìm các xâu con liên tiếp của S có trọng lượng bằng K. 
+Trọng lượng của 1 ký tự được tính như sau: ['a']=1; ['b']=2; ['c']=3,['z']=26.
+Trọng lượng của xâu S được tính là tổng trọng lượng các ký tự có trong xâu S. 
+Dữ liệu đầu vào: Tệp ‘timxaucon.inp’:
+Dòng đầu tiên chứa số lượng các trường hợp cần kiểm tra T. Với mỗi test dữ liệu được cho trên 2 dòng, dòng đầu là số nguyên K và dòng sau là xâu S.
+Dữ liệu ra: Tệp ‘timxaucon.out’
+In ra số lượng các xâu con có trọng lượng bằng K, mỗi số trên 1 dòng. 
+Giới hạn:1<=T<=20; 1<=K<=26*|S| ; 1<=|S|<=1000000 
+Timxaucon.inp
+Timxaucon.out
+2
+5
+abcdef
+4
+abcdef
+2
+1
+Chương trình: 
+program timxaucon;
+const fi='timxaucon.inp';
+ fo='timxaucon.out';
+ nmax=20;
+var f,f1:text;
+ luus:array[1..nmax] of ansistring;
+ s1,cs:array[0..nmax] of int64;
+ i,j,t,d,n:longint;
+procedure doc;
+var i:longint;
+ s:ansistring;
+begin
+ assign(f,fi);
+ reset(f);
+ readln(f,t);
+ for i:=1 to t do
+ begin
+ readln(f,cs[i]);
+ readln(f,luus[i]);
+ end;
+end;
+procedure taobang(s:ansistring);
+var i,x:longint;
+begin
+ s1[0]:=0;
+ for i:=1 to length(s) do
+ begin
+ x:=ord(s[i])-96;
+ s1[i]:=s1[i-1]+x;
+ end;
+end;
+function tknp(x:longint):boolean;
+var d,c,k:longint;
+begin
+ tknp:=false;
+ d:=1;
+ c:=n;
+ while d<=c do
+ begin
+ k:=(d+c) div 2;
+ if s1[k]=x then
+ begin
+ tknp:=true;
+ exit;
+ end;
+ if s1[k]>x then c:=k-1
+ else d:=k+1;
+ end;
+end;
+begin
+ doc;
+ assign(f1,fo);
+ rewrite(f1);
+ for i:=1 to t do
+ begin
+ taobang(luus[i]);
+ n:=length(luus[i]);
+ d:=0;
+ for j:=0 to length(luus[i]) do
+ if tknp(s1[j]+cs[i]) then inc(d);
+ writeln(f1,d);
+ end;
+ close(f1);
+ end.
+Bài 6. Trong một chuyến đi đến siêu thị CoopMart, Tân muốn mua một số món hàng cho bạn bè và người thân của mình.
+Siêu thị này có một số quy tắc kỳ lạ. Nó chứa n các sản phẩm khác nhau được đánh số từ 1 đến n. Mặt hàng thứ i có giá cơ bản không đổi là bi. Nếu Tân mua K mặt hàng với chỉ số x1, x2, ..., xk, thì giá của sản phẩm xj là bxj + xj* k với 1 ≤ j ≤ k. Nói cách khác, giá của một mặt hàng bằng với giá căn bản cộng với chỉ số nhân với hệ số k.
+Tân muốn mua càng nhiều đồ càng tốt mà không phải trả nhiều tiền hơn một số SP. Lưu ý rằng mỗi món hàng chỉ được mua 1 lần. Hãy giúp Tân chọn cách mua với nhiều mặt hàng nhất.
+Dữ liệu vào: Tệp ‘muahang.inp’
+- Dòng đầu tiên chứa hai số nguyên n và SP (1 ≤ n ≤ 105 và 1 ≤ SP ≤ 109) - số lượng các mặt hàng trên và số tiền tối đa Tân có thể mua
+- Dòng thứ hai chứa n số nguyên b1, b2, ..., bn(1 ≤ bi ≤ 105) - giá trị cơ bản của các mặt hàng.
+Dữ liệu ra: Tệp ‘muahang.out’
+- In hai số nguyên k, T là số lượng tối đa các hàng mà Tân có thể mua và tổng chi phí tối thiểu để mua những mặt hàng k.
+Muahang.inp
+Muahang.out
+Giải thích test
+3 11
+2 3 5
+2 11
+Trong ví dụ này, Tân không thể lấy cả ba mặt hàng bởi vì giá của mỗi mặt hàng lần lượt là [5, 9, 14] và tổng chi phí của nó 28. Nếu Tân chỉ mua hai mặt hàng, thì chi phí sẽ là [4, 7] và tổng chi phí là 11.
+ Bài 6. Vào đêm Noel, Hòa cùng M người bạn của mình lên kế hoạch để đi chơi. Nhà của Hòa và các bạn của cô nằm trên cùng 1 con đường, các nhà được đánh vị trí từ 1 đến N, mỗi nhà cách nhau 1 mét. Nhà của Hòa ở vị trí 1 và địa điểm vui chơi ở vị trí N. Nhà M người bạn ở các vị trí a1, a2,..., aM. Ngoài ra trên tuyến đường còn có P trạm xe buýt tại các vị trí b1, b2, ..., bP. Từ nhà mình, Hòa lần lượt đi đến nhà của các bạn mình theo kế hoạch. Cô có thể đi bằng taxi hoặc xe buýt. Với taxi, cô có thể bắt từ bất kì vị trí nào, giá của taxi là T đồng/mét. Với xe buýt, cô chỉ có thể bắt từ trạm này và đi đến một trạm khác, giá của xe buýt là B đồng/lượt không phân biệt khoảng cách. Bạn hãy giúp Hòa tìm cách đi đón tất cả các bạn và đến điểm vui chơi với số tiền phải trả là ít nhất. 
+Yêu cầu: Cho biết số nhà trên đường, các nhà phải đến đón, số trạm xe buýt và số tiền đi xe taxi, xe buýt, bạn hãy tìm cách đi sao cho đến thăm đúng thứ tự các nhà và đến vị trí N với số tiền ít nhất.
+Dữ liệu nhập: Tệp ‘Taxibuyt.inp’
+  - Dòng thứ nhất chứa các số nguyên N, M, P, T, B là số nhà, các nhà phải đón, số trạm xe buýt và số tiền đi taxi, xe buýt. (1 ≤ N ≤ 109 | 0 ≤ M,P ≤ 105 | 1 ≤ T,B ≤ 104) .
+  - Dòng thứ hai chứa M số nguyên là thứ tự các nhà phải đến, số thứ ai là vị trí của nhà thứ i (1 ≤ ai ≤ N). Dữ liệu cho đảm bảo không có 2 nhà trùng vị trí.
+  - Dòng cuối cùng chứa P số nguyên là vị trí các trạm xe buýt theo thứ tự tăng dần, số thứ bi là vị trí của trạm thứ i, mặc định có trạm ở vị trí 1 và N. (1 ≤ bi ≤ N).
+Dữ liệu xuất: Tệp ‘taxibuyt.out’
+  In ra 1 số nguyên duy nhất là số tiền ít nhất phải trả.
+Taxibuyt.inp
+Taxibuyt.out
+Giải thích test
+10 2 2 1000 2000
+5 8
+4 7
+8000
+- Đầu tiên Hòa đi xe buýt từ 1 đến 4 
+- Sau đó đi taxi từ 4 đến 5, 5 đến 8 và 8 đến 10
+Tổng số tiền là 2000+1000+3000+2000=8000 đồng
+Ý tưởng: Thực hiện tìm kiếm nhị phân để tìm ra điểm xe buýt gần nhất với từng địa điểm nhà bạn của Hòa và lưu vào mảng TB. 
+Để tìm chi phí rẻ nhất cho cách đi từ nhà thứ i đến nhà i+1 ta chỉ cần so sánh giá trị (khoảng cách giữa 2 nhà)* số tiền đi taxi và (khoảng cách từ điểm 2 xe buýt gần nhất tới 2 ngôi nhà)* số tiền đi taxi + số tiền đi 1 lượt xe buýt. 
+N1
+N2
+B1
+B2
+Ví dụ như hình dưới: Ký hiệu B1, B2 là vị trí nhà các bạn của Hòa; N1, N2 là vị trí các điểm xe buýt gần nhất với 2 ngôi nhà thì ta so sánh (abs(B1-N1)+abs(B2-N2))*Số tiền đi taxi +Số tiền cho mỗi lượt đi xe buýt và (B2-B1)*Số tiền đi taxi
+Chương trình:
+program ditaxi;
+const fi='taxibuyt.inp';
+ fo='taxibuyt.out';
+ nmax=100002;
+var f:text;
+ m,n,p,t,b,i:longint;
+ s:int64;
+ nha,buyt,tb:array[0..nmax] of longint;
+procedure doc;
+var i:longint;
+begin
+ assign(f,fi);
+ reset(f);
+ readln(f,n,m,p,t,b);
+ nha[1]:=1;
+ for i:=2 to m+1 do read(f,nha[i]);
+ nha[m+2]:=n;
+ m:=m+2;
+ readln(f);
+ buyt[1]:=1;
+ for i:=2 to p+1 do read(f,buyt[i]);
+ buyt[p+2]:=n;
+ p:=p+2;
+end;
+function tknp(x:longint):longint;
+var d,c,g:longint;
+begin
+ d:=1;
+ c:=p;
+ while d<=c do
+ begin
+ g:=(d+c) div 2;
+ if buyt[g]<x then d:=g+1
+ else c:=g-1;
+ end;
+ if (buyt[g]-x)>x-buyt[g-1] then tknp:=buyt[g-1]
+ else tknp:=buyt[g];
+end;
+procedure xuly;
+var i:longint;
+begin
+ tb[1]:=1;
+ for i:=2 to m do
+ tb[i]:=tknp(nha[i]);
+ s:=0;
+ for i:=1 to m-1 do
+ if (abs(tb[i]-nha[i])+abs(tb[i+1]-nha[i+1]))*t+b>(nha[i+1]-nha[i])*t then
+ s:=s+ (nha[i+1]-nha[i])*t
+ else s:=s+(abs(tb[i]-nha[i])+abs(tb[i+1]-nha[i+1]))*t+b;
+ end;
+ begin
+ doc;
+ xuly;
+ assign(f,fo);
+ rewrite(f);
+ writeln(f,s);
+ close(f);
+ end.
+Bài 7. Nông dân John có một trang trại với N cái cọc. Các cọc này được đặt trên một đường thẳng ở các vị trí x1, x2, , xn.
+Trang trại này có C con bò. Những con bò này không thích những chiếc cọc cho lắm. Chúng trở nên hung dữ khi bị buộc vào những chiếc cọc. Để tránh việc các con bò làm đau nhau, nông dân John muốn đặt mỗi con bò vào một cái cọc, sao cho khoảng cách nhỏ nhất giữa hai con bò bất kì là lớn nhất. Hãy tìm giá trị lớn nhất này.
+Dữ liệu vào: Tệp ‘conbo.inp’:
+- Dòng đầu tiên gồm hai số nguyên dương N và C (2 ≤ C ≤ N ≤ 100000).
+- N dòng tiếp theo, mỗi dòng chứa một số nguyên xi mô tả vị trí của một cây cọc (0 ≤ xi ≤ 109).
+Dữ liệu ra: Tệp ‘conbo.out’
+- In ra giá trị lớn nhất của khoảng cách nhỏ nhất giữa hai con bò bất kì.
+'conbo.inp'
+'conbo.out'
+Giải thích test
+5 3
+1
+2
+8
+4
+9
+3
+Nông dân John có thể đặt các con bò vào các vị trí 1, 4 và 8, khi đó, khoảng cách bé nhất giữa hai con bò bất kì là 3.
+Chương trình:
+program conbo;
+const   fo='conbo.out';
+       fi='conbo.inp';
+var n,c,i,kq,max:longint;
+   a:array[1..100000] of longint;
+   f:text;
+procedure sort(l,h: longint);
+     var i,j,khoa,tam: longint;
+     begin
+        i:=l;
+        j:=h;
+        khoa:=a[(l+h) div 2];
+        repeat
+          while a[i]<khoa do inc(i);
+          while khoa<a[j] do dec(j);
+          if i<=j then
+            begin
+               tam:=a[i];
+               a[i]:=a[j];
+               a[j
