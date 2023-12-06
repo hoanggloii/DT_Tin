@@ -718,7 +718,7 @@ int main(){
 bool kt_snt(int x){
     if(x<2) return false;
     int y=sqrt(x);
-    for(int i=1; i<=y; i++)
+    for(int i=2; i<=y; i++)
         if(x%i==0) return false;
     return true;
 }
