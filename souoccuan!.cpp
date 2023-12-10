@@ -2,7 +2,6 @@
 #define task "task"
 #define ll long long
 #define FOR(j,k,i) for(int i = k ; i <= j ;i++)
-#define FIR(j,k,i) for(int i = j ; i >= k ;i--)
 using namespace std;
 int n;
 bool nt[100001];
