@@ -1,3 +1,9 @@
+// cho xau s va q truy van voi moi truy van la 2 so nguyen l , r 
+// kiem tra s.substr(l,r) co phai xau dx khong
+
+
+
+
 // lib
 #include <iostream>
 #include <vector>
